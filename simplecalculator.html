@@ -1,0 +1,119 @@
+<html>
+    <head>
+        <title>Simple Calculator</title>
+        <style>
+            h1{
+                text-align:center;
+            }
+            body{
+                margin:0;
+                height:100vh;
+                display:flex;
+                justify-content:center;
+                align-items:center;
+                background-color:skyblue;
+                flex-direction: column;
+            }
+            .calculator{
+                background:orange;
+                padding:20;
+                border-radius:15px;     
+                box-shadow:0 4px 15 px rgba(0,0,0,0,5);
+            }
+            #display{
+                width:300px;
+                height:60px;
+                padding:10px;
+                font-size:30px;
+                text-align:right;
+                border:none;
+                background:grey;
+                border-radius:10px;
+                color:thistle;
+                box-sizing:border-box;
+                margin-bottom:15px;
+            }
+            .button{
+                display:grid;
+                grid-template-columns:repeat(4,70px);
+                gap:10px;
+            }
+            button{
+                height:70px;
+                border:none;
+                border-radius:10px;
+                background:moccasin;
+                color:black;
+                font-size:24px;
+                cursor:pointer;
+            }
+        </style>
+    </head>
+    <body >
+        <h1>Simple Calculator</h1>
+        <div class="calculator">
+            <input type="text" id="display" value="0" disabled> 
+            <div class="button">
+                
+                <button onclick ="cleardisplay()">C</button>
+                <button onclick="append('%')">%</button>
+                <button onclick="append('.')">.</button>
+                <button onclick="backspace()">⌫</button>
+                
+                <button onclick="append('9')">9</button>
+                <button onclick="append('8')">8</button>
+                <button onclick="append('7')">7</button>
+                <button class="operator" onclick="append('/')">/</button>
+                
+                <button onclick="append('6')">6</button>
+                <button onclick="append('5')">5</button>
+                <button onclick="append('4')">4</button>
+                <button class="operator" onclick="append('*')">*</button>
+                
+                <button onclick="append('3')">3</button>
+                <button onclick="append('2')">2</button>
+                <button onclick="append('1')">1</button>
+                <button class="operator" onclick="append('-')">-</button>
+                
+                <button  width:100px; class="zero" onclick="append('0')">0</button>
+                <button class="double zero" onclick="('00')">00</button>
+                <button class="equal" onclick="calculate()">=</button>
+                <button class="operator" onclick="append('+')">+</button>
+                </div>
+                </div>
+        
+        <p id="result"></p>
+
+        <script>
+            let display = document.getElementById("display");
+            let result = document.getElementById("result");
+
+            function append(value) {
+                if (display.value === "0") {
+                    display.value = value;
+                } else {
+                    display.value += value;
+                }
+            }
+
+            function cleardisplay() {
+                display.value = "0";
+            }
+
+            function backspace() {
+                display.value = display.value.slice(0, -1);
+                if (display.value === "") {
+                    display.value = "0";
+                }
+            }
+
+            function calculate() {
+                try {
+                    display.value = eval(display.value);
+                } catch (error) {
+                    display.value = "Error";
+                }
+            }
+        </script>
+    </body>
+</html>
